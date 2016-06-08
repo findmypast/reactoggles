@@ -1,0 +1,29 @@
+{
+  "name": "reactoggles",
+  "version": "0.1.0",
+  "description": "Higher-order components for React to enable feature toggling of components",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/findmypast/reactoggler.git"
+  },
+  "keywords": [
+    "toggle",
+    "feature",
+    "toggle",
+    "react",
+    "reactjs"
+  ],
+  "author": "Findmypast",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/findmypast/reactoggler/issues"
+  },
+  "homepage": "https://github.com/findmypast/reactoggler#readme",
+  "dependencies": {
+    "react": "^15.1.0"
+  }
+}
