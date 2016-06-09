@@ -29,14 +29,23 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",
+    "babel-jest": "^12.1.0",
+    "babel-plugin-transform-class-properties": "^6.9.1",
+    "babel-polyfill": "^6.9.1",
     "eslint": "^2.11.1",
     "eslint-config-eslint": "^3.0.0",
-    "eslint-plugin-react": "^5.1.1"
+    "eslint-plugin-react": "^5.1.1",
+    "jest-cli": "^12.1.1",
+    "react-addons-test-utils": "^15.1.0",
+    "react-dom": "^15.1.0"
   },
   "babel": {
     "presets": [
       "es2015",
       "react"
+    ],
+    "plugins": [
+      "transform-class-properties"
     ]
   },
   "eslintConfig": {
@@ -61,6 +70,13 @@
     },
     "plugins": [
       "react"
+    ]
+  },
+  "jest": {
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react/",
+      "<rootDir>/node_modules/react-dom/",
+      "<rootDir>/node_modules/react-addons-test-utils/"
     ]
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'React';
+import React, { Component } from 'react';
 import getDisplayName from 'react-display-name';
 
 const ToggleOn = (ToggledComponent, toggle) => class extends Component {
