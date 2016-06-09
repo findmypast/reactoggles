@@ -1,10 +1,13 @@
-import { Component } from "React";
+import React, { Component } from 'React';
+import getDisplayName from 'react-display-name';
 
 const ToggleOn = (ToggledComponent, toggle) => class extends Component {
+  static displayName = `ToggleOn(${getDisplayName(ToggledComponent)})`;
   constructor() {
+    super();
     this.state = { toggle: false };
   }
-  componentDidMount() {
+  componentWillMount() {
     this.setState({ toggle: toggle() });
   }
   render() {
@@ -13,11 +16,14 @@ const ToggleOn = (ToggledComponent, toggle) => class extends Component {
   }
 };
 
+
 const ToggleAB = (ComponentA, ComponentB, toggle) => class extends Component {
+  static displayName = `ToggleAB(${getDisplayName(ComponentA)},${getDisplayName(ComponentB)})`;
   constructor() {
+    super();
     this.state = { toggle: false };
   }
-  componentDidMount() {
+  componentWillMount() {
     this.setState({ toggle: toggle() });
   }
   render() {
