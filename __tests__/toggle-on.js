@@ -1,11 +1,11 @@
 /* global jest describe it expect */
 
-jest.unmock('../reactoggles');
+jest.unmock('../src/reactoggles');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import { ToggleOn } from '../reactoggles';
+import { ToggleOn } from '../src/reactoggles';
 
 class TestComponent extends React.Component {
   static propTypes = { text: React.PropTypes.string };

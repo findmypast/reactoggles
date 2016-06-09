@@ -1,11 +1,11 @@
 /* global jest describe it expect */
 
-jest.unmock('../reactoggles');
+jest.unmock('../src/reactoggles');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import { ToggleAB } from '../reactoggles';
+import { ToggleAB } from '../src/reactoggles';
 
 class TestComponentA extends React.Component {
   render() {
