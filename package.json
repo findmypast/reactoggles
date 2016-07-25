@@ -1,6 +1,6 @@
 {
   "name": "reactoggles",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Higher-order components for React to enable feature toggling of components",
   "main": "lib/reactoggles.js",
   "scripts": {
