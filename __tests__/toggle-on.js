@@ -22,23 +22,37 @@ describe('toggleOn', () => {
   it('renders with proper props if the toggle is true', () => {
     const EXPECTED_TEXT = 'test text';
 
-    const toggle = () => true;
-    const WrappedComponent = ToggleOn(TestComponent, toggle);
-    const componentInDoc = TestUtils.renderIntoDocument(
-      <WrappedComponent text={EXPECTED_TEXT} />
-    );
-    const componentNode = ReactDOM.findDOMNode(componentInDoc);
+    const toggle = () => new Promise((resolve) => {
+        resolve(true);
+    });
 
-    expect(componentNode.textContent).toEqual(EXPECTED_TEXT);
+    // Using setTimeout gives the promise a chance to resolve
+    // and avoids race conditions.
+    setTimeout(() => {
+      const WrappedComponent = ToggleOn(TestComponent, toggle);
+      const componentInDoc = TestUtils.renderIntoDocument(
+        <WrappedComponent text={EXPECTED_TEXT} />
+      );
+      const componentNode = ReactDOM.findDOMNode(componentInDoc);
+
+      expect(componentNode.textContent).toEqual(EXPECTED_TEXT);
+
+    }, 50);
   });
+  
   it('does not render if toggle is false', () => {
-    const toggle = () => false;
-    const WrappedComponent = ToggleOn(TestComponent, toggle);
-    const componentInDoc = TestUtils.renderIntoDocument(
-      <WrappedComponent text={'not shown'} />
-    );
-    const componentNode = ReactDOM.findDOMNode(componentInDoc);
+    const toggle = () => new Promise((resolve) => {
+        resolve(false);
+    });
 
-    expect(componentNode).toEqual(null);
+    setTimeout(() => {
+      const WrappedComponent = ToggleOn(TestComponent, toggle);
+      const componentInDoc = TestUtils.renderIntoDocument(
+        <WrappedComponent text={'not shown'} />
+      );
+      const componentNode = ReactDOM.findDOMNode(componentInDoc);
+
+      expect(componentNode).toEqual(null);
+    }, 10);
   });
 });

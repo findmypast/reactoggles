@@ -8,7 +8,12 @@ const ToggleOn = (ToggledComponent, toggle) => class extends Component {
     this.state = { toggle: false };
   }
   componentWillMount() {
-    this.setState({ toggle: toggle() });
+    console.log("Inside componentWillMount");
+
+    return toggle()
+      .then(state => {
+        this.setState({ toggle: state })
+      });
   }
   render() {
     if (this.state.toggle) return <ToggledComponent {...this.props} />;
@@ -24,7 +29,10 @@ const ToggleAB = (ComponentA, ComponentB, toggle) => class extends Component {
     this.state = { toggle: false };
   }
   componentWillMount() {
-    this.setState({ toggle: toggle() });
+    return toggle()
+      .then(state => {
+        this.setState({ toggle: state })
+      });
   }
   render() {
     if (this.state.toggle) return <ComponentA {...this.props} />;

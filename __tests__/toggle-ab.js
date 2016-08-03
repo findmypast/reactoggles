@@ -29,23 +29,35 @@ class TestComponentB extends React.Component {
 
 describe('toggleOn', () => {
   it('renders component A if the toggle is true', () => {
-    const toggle = () => true;
-    const WrappedComponent = ToggleAB(TestComponentA, TestComponentB, toggle);
-    const componentInDoc = TestUtils.renderIntoDocument(
-      <WrappedComponent />
-    );
-    const componentNode = ReactDOM.findDOMNode(componentInDoc);
+    const toggle = () => new Promise((resolve) => {
+        resolve(true);
+    });
 
-    expect(componentNode.textContent).toEqual('ComponentA');
+    // Using setTimeout gives the promise a chance to resolve
+    // and avoids race conditions.
+    setTimeout(() => {
+      const WrappedComponent = ToggleAB(TestComponentA, TestComponentB, toggle);
+      const componentInDoc = TestUtils.renderIntoDocument(
+        <WrappedComponent />
+      );
+      const componentNode = ReactDOM.findDOMNode(componentInDoc);
+
+      expect(componentNode.textContent).toEqual('ComponentA');
+    }, 50);
   });
   it('renders component B if the toggle is false', () => {
-    const toggle = () => false;
-    const WrappedComponent = ToggleAB(TestComponentA, TestComponentB, toggle);
-    const componentInDoc = TestUtils.renderIntoDocument(
-      <WrappedComponent />
-    );
-    const componentNode = ReactDOM.findDOMNode(componentInDoc);
+    const toggle = () => new Promise((resolve) => {
+        resolve(false);
+    });
 
-    expect(componentNode.textContent).toEqual('ComponentB');
+    setTimeout(() => {
+      const WrappedComponent = ToggleAB(TestComponentA, TestComponentB, toggle);
+      const componentInDoc = TestUtils.renderIntoDocument(
+        <WrappedComponent />
+      );
+      const componentNode = ReactDOM.findDOMNode(componentInDoc);
+
+      expect(componentNode.textContent).toEqual('ComponentB');
+    }, 50);
   });
 });
