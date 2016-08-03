@@ -8,8 +8,6 @@ const ToggleOn = (ToggledComponent, toggle) => class extends Component {
     this.state = { toggle: false };
   }
   componentWillMount() {
-    console.log("Inside componentWillMount");
-
     return toggle()
       .then(state => {
         this.setState({ toggle: state })
